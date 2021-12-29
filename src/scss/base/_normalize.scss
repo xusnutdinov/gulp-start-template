@@ -3,14 +3,6 @@ html {
   text-size-adjust: 100%;
 }
 
-body {
-  margin: 0;
-}
-
-main {
-  display: block;
-}
-
 h1 {
   margin: 0.67em 0;
   font-size: 2em;
@@ -78,7 +70,6 @@ input,
 optgroup,
 select,
 textarea {
-  margin: 0;
   font-family: inherit;
   font-size: 100%;
   line-height: 1.15;
