@@ -1,98 +1,13 @@
 @use "sass:math";
 
 .icon {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  fill: currentColor;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
 }
 
-.icon-arrow-left {
-  width: math.div(34, 34) * 1em;
-  font-size: math.div(34, 100) * 1rem;
-}
-
-.icon-arrow-right {
-  width: math.div(30, 30) * 1em;
-  font-size: math.div(30, 100) * 1rem;
-}
-
-.icon-box {
-  width: math.div(42, 42) * 1em;
-  font-size: math.div(42, 100) * 1rem;
-}
-
-.icon-close {
-  width: math.div(40, 40) * 1em;
-  font-size: math.div(40, 100) * 1rem;
-}
-
-.icon-contact-telegram {
-  width: math.div(32, 32) * 1em;
-  font-size: math.div(32, 100) * 1rem;
-}
-
-.icon-contact-viber {
-  width: math.div(32, 33) * 1em;
-  font-size: math.div(33, 100) * 1rem;
-}
-
-.icon-contact-whatsapp {
-  width: math.div(32, 32) * 1em;
-  font-size: math.div(32, 100) * 1rem;
-}
-
-.icon-headphone {
-  width: math.div(22, 22) * 1em;
-  font-size: math.div(22, 100) * 1rem;
-}
-
-.icon-iphone {
-  width: math.div(22, 22) * 1em;
-  font-size: math.div(22, 100) * 1rem;
-}
-
-.icon-lock {
-  width: math.div(42, 42) * 1em;
-  font-size: math.div(42, 100) * 1rem;
-}
-
-.icon-mail {
-  width: math.div(24, 24) * 1em;
-  font-size: math.div(24, 100) * 1rem;
-}
-
-.icon-minus {
-  width: math.div(14, 14) * 1em;
-  font-size: math.div(14, 100) * 1rem;
-}
-
-.icon-plus {
-  width: math.div(14, 14) * 1em;
-  font-size: math.div(14, 100) * 1rem;
-}
-
-.icon-support {
-  width: math.div(42, 42) * 1em;
-  font-size: math.div(42, 100) * 1rem;
-}
-
-.icon-telegram {
-  width: math.div(32, 32) * 1em;
-  font-size: math.div(32, 100) * 1rem;
-}
-
-.icon-transport {
-  width: math.div(42, 42) * 1em;
-  font-size: math.div(42, 100) * 1rem;
-}
-
-.icon-viber {
-  width: math.div(32, 32) * 1em;
-  font-size: math.div(32, 100) * 1rem;
-}
-
-.icon-whatsapp {
-  width: math.div(32, 32) * 1em;
-  font-size: math.div(32, 100) * 1rem;
+.icon-placeholder-svg {
+    font-size: math.div(434.17,100) * 1rem;
+    width: math.div(434.17,434.17) * 1em;
 }
