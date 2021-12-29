@@ -1,6 +1,6 @@
 {
   "name": "start-template",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "gulp start template",
   "main": "gulpfile.js",
   "scripts": {
