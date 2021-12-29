@@ -1,0 +1,40 @@
+// ===========
+// LIBRARIES
+// ===========
+// @import "./global/custom-bootstrap";
+// @import "../../node_modules/bootstrap/scss/bootstrap-reboot.scss";
+// @import "../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+// @import "../../node_modules/owl.carousel/src/scss/owl.carousel.scss";
+// @import "../../node_modules/slick-carousel/slick/slick.scss";
+
+// ===========
+// BASE STYLES
+// ===========
+@import "./base/null";
+
+// @import "./base/sprite";
+
+// ===========
+// GLOBAL STYLES
+// ===========
+// @import "./global/fonts";
+@import "./global/variables";
+@import "./global/global";
+
+// ===========
+// COMPONENTS STYLES
+// ===========
+@import "./components/modals";
+
+// @import "./components/nav";
+@import "./components/header";
+@import "./components/footer";
+
+// @import "./components/button";
+// @import "./components/form";
+
+// ===========
+// PAGES STYLES
+// ===========
+@import "./pages/index/main";
+@import "./pages/about/main";
