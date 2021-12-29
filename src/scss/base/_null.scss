@@ -18,7 +18,6 @@
 a,
 a:visited {
   font-family: inherit;
-  color: inherit;
   text-decoration: none;
 }
 
@@ -60,7 +59,7 @@ button::-moz-focus-inner {
 }
 
 a:hover {
-  color: inherit;
+  // color: inherit;
   text-decoration: none;
 }
 
@@ -76,16 +75,6 @@ ul li {
 
 img {
   vertical-align: top;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-size: inherit;
-  font-weight: 500;
 }
 
 .visually-hidden {

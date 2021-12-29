@@ -84,13 +84,13 @@ function css() {
         ],
       })
     )
+    .pipe(dest(path.build.css))
     .pipe(gcmq())
     .pipe(
       gulpClean({
         level: 2,
       })
     )
-    .pipe(dest(path.build.css))
     .pipe(
       sass({
         outputStyle: "compressed",

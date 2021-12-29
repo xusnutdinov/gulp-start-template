@@ -10,6 +10,8 @@
 // ===========
 // BASE STYLES
 // ===========
+@import "./base/mixins";
+@import "./base/normalize";
 @import "./base/null";
 
 // @import "./base/sprite";
@@ -17,21 +19,22 @@
 // ===========
 // GLOBAL STYLES
 // ===========
-// @import "./global/fonts";
 @import "./global/variables";
 @import "./global/global";
+
+// @import "./global/fonts";
 
 // ===========
 // COMPONENTS STYLES
 // ===========
-@import "./components/modals";
 
-// @import "./components/nav";
 @import "./components/header";
 @import "./components/footer";
 
+// @import "./components/nav";
 // @import "./components/button";
 // @import "./components/form";
+// @import "./components/modals";
 
 // ===========
 // PAGES STYLES

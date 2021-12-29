@@ -12,19 +12,9 @@ $font-secondary: "Montserrat", sans-serif;
 $color-white: #fff;
 $color-black: #000;
 
-// Body srtyles
-$color-body-bg: $color-white;
-$color-text-main: $color-black;
-
 // ===========
 // Sizes
 // ===========
-
-@mixin title-1 {
-  font-size: 50px;
-  font-weight: 700;
-  line-height: 60px;
-}
 
 @mixin body {
   font-size: 16px;

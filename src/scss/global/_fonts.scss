@@ -1,8 +1,1 @@
-@font-face {
-  font-family: "Nunito Sans";
-  font-style: normal;
-  font-weight: 300;
-  src: url("../fonts/nunito_sans_light.woff2") format("woff2"),
-    url("../fonts/nunito_sans_light.woff") format("woff");
-  font-display: swap;
-}
+@include font-face("Roboto", "Roboto", normal, 400);
