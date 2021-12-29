@@ -1,20 +1,20 @@
 include mixins
 
 block vars
-    - var pageTitle = "Базовая"
-    
+  - var pageTitle = "Базовая"
+
 doctype html
 html(lang='ru')
-    head
-        include ../base/head
-    body
-        .wrapper
-            include ../components/header
+  head
+    include ../base/head
+  body
+    .wrapper
+      include ../components/header
 
-            main.main
-                block content
+      main.main
+        block content
 
-            include ../components/footer
-            
-        include ../components/modals
-        script(src='js/main.min.js')
+      include ../components/footer
+
+    include ../components/modals
+    script(src='js/main.min.js')

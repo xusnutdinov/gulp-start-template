@@ -1,70 +1,56 @@
-const { src, dest, series, parallel, watch } = require('gulp');
-const sass = require('gulp-sass')(require('sass'));
-const rename = require('gulp-rename');
-const del = require('del');
-const prefixer = require('gulp-autoprefixer');
-const browserSync = require('browser-sync');
-const gulpStylelint = require('gulp-stylelint');
-const gulpSprite = require('gulp-svg-sprite');
-const uglifyJs = require('gulp-uglify');
-const gulpClean = require('gulp-clean-css');
-const svgmin = require('gulp-svgmin');
-const fileInclude = require('gulp-include');
-const gcmq = require('gulp-group-css-media-queries');
-const pug = require('gulp-pug');
-const pugLinter = require('gulp-pug-linter');
-const plumber = require('gulp-plumber');
-const cheerio = require('gulp-cheerio');
-const replace = require('gulp-replace');
-const formatHtml = require('gulp-format-html');
-const imagemin = require('gulp-imagemin');
-const imgCompress = require('imagemin-jpeg-recompress');
+const { src, dest, series, parallel, watch } = require("gulp");
+const sass = require("gulp-sass")(require("sass"));
+const rename = require("gulp-rename");
+const del = require("del");
+const prefixer = require("gulp-autoprefixer");
+const browserSync = require("browser-sync");
+const gulpSprite = require("gulp-svg-sprite");
+const uglifyJs = require("gulp-uglify");
+const gulpClean = require("gulp-clean-css");
+const svgmin = require("gulp-svgmin");
+const fileInclude = require("gulp-include");
+const gcmq = require("gulp-group-css-media-queries");
+const pug = require("gulp-pug");
+const pugLinter = require("gulp-pug-linter");
+const plumber = require("gulp-plumber");
+const cheerio = require("gulp-cheerio");
+const replace = require("gulp-replace");
+const formatHtml = require("gulp-format-html");
+const imagemin = require("gulp-imagemin");
+const imgCompress = require("imagemin-jpeg-recompress");
+const babel = require("gulp-babel");
 
 const path = {
   src: {
-    pug: 'src/templates/*.pug',
-    scss: 'src/scss/*.scss',
-    js: 'src/js/*.js',
-    img: 'src/img/**/*.+(png|jpg|jpeg|gif|svg|webp|ico|xml|webmanifest)',
-    fonts: 'src/fonts/*.+(woff|woff2)',
-    svg: 'src/svg/*.svg',
+    pug: "src/templates/*.pug",
+    scss: "src/scss/*.scss",
+    js: "src/js/*.js",
+    img: "src/img/**/*.+(png|jpg|jpeg|gif|svg|webp|ico|xml|webmanifest)",
+    fonts: "src/fonts/*.+(woff|woff2)",
+    svg: "src/svg/*.svg",
   },
   build: {
-    pug: 'build',
-    css: 'build/css',
-    js: 'build/js',
-    img: 'build/img',
-    fonts: 'build/fonts',
+    pug: "build",
+    css: "build/css",
+    js: "build/js",
+    img: "build/img",
+    fonts: "build/fonts",
   },
   watch: {
-    all: 'build',
-    pug: 'src/templates/**/*.pug',
-    scss: 'src/scss/**/*.scss',
-    js: 'src/js/**/*.js',
-    img: 'src/img/**/*.+(png|jpg|jpeg|gif|svg|webp|ico|xml|webmanifest)',
-    fonts: 'src/fonts/*.+(woff|woff2)',
-    svg: 'src/svg/*.svg',
+    all: "build",
+    pug: "src/templates/**/*.pug",
+    scss: "src/scss/**/*.scss",
+    js: "src/js/**/*.js",
+    img: "src/img/**/*.+(png|jpg|jpeg|gif|svg|webp|ico|xml|webmanifest)",
+    fonts: "src/fonts/*.+(woff|woff2)",
+    svg: "src/svg/*.svg",
   },
 };
-
-function lintCss() {
-  return src(path.src.scss).pipe(
-    gulpStylelint({
-      reporters: [
-        {
-          failAfterError: true,
-          formatter: 'string',
-          console: true,
-        },
-      ],
-    })
-  );
-}
 
 function server() {
   browserSync.init({
     server: {
-      baseDir: './build',
+      baseDir: "./build",
     },
     notify: false,
   });
@@ -72,29 +58,29 @@ function server() {
 }
 
 function clean() {
-  return del(['build/**']);
+  return del(["build/**"]);
 }
 
 function css() {
   return src(path.src.scss)
     .pipe(
       sass({
-        outputStyle: 'expanded',
-        indentWidth: 4,
+        outputStyle: "expanded",
+        indentWidth: 2,
       })
     )
     .pipe(
       prefixer({
         cascade: false,
-        overrideBrowserslist: ['last 8 versions', '> 1%', 'not dead'],
+        overrideBrowserslist: ["last 8 versions", "> 1%", "not dead"],
         browsers: [
-          'Android >= 4',
-          'Chrome >= 20',
-          'Firefox >= 24',
-          'Explorer >= 11',
-          'iOS >= 6',
-          'Opera >= 12',
-          'Safari >= 6',
+          "Android >= 4",
+          "Chrome >= 20",
+          "Firefox >= 24",
+          "Explorer >= 11",
+          "iOS >= 6",
+          "Opera >= 12",
+          "Safari >= 6",
         ],
       })
     )
@@ -107,12 +93,12 @@ function css() {
     .pipe(dest(path.build.css))
     .pipe(
       sass({
-        outputStyle: 'compressed',
-      }).on('error', sass.logError)
+        outputStyle: "compressed",
+      }).on("error", sass.logError)
     )
     .pipe(
       rename({
-        extname: '.min.css',
+        extname: ".min.css",
       })
     )
     .pipe(dest(path.build.css));
@@ -121,14 +107,14 @@ function css() {
 function html() {
   return src(path.src.pug)
     .pipe(plumber())
-    .pipe(pugLinter({ reporter: 'default' }))
+    .pipe(pugLinter({ reporter: "default" }))
     .pipe(
       pug({
-        pretty: '\t',
+        pretty: "\t",
       })
     )
     .pipe(plumber.stop())
-    .pipe(replace('&gt;', '>'))
+    .pipe(replace("&gt;", ">"))
     .pipe(
       formatHtml({
         indent_size: 4,
@@ -140,11 +126,16 @@ function html() {
 function scripts() {
   return src(path.src.js)
     .pipe(fileInclude())
+    .pipe(
+      babel({
+        presets: ["@babel/preset-env"],
+      })
+    )
     .pipe(dest(path.build.js))
     .pipe(uglifyJs())
     .pipe(
       rename({
-        extname: '.min.js',
+        extname: ".min.js",
       })
     )
     .pipe(dest(path.build.js));
@@ -161,7 +152,7 @@ function optImages() {
         loops: 4,
         min: 70,
         max: 80,
-        quality: 'high',
+        quality: "high",
       }),
       imagemin.gifsicle(),
       imagemin.optipng(),
@@ -186,23 +177,23 @@ function svgSprite() {
     .pipe(
       cheerio({
         run: function ($) {
-          $('[fill]').removeAttr('fill');
-          $('[stroke]').removeAttr('stroke');
-          $('[style]').removeAttr('style');
+          $("[fill]").removeAttr("fill");
+          $("[stroke]").removeAttr("stroke");
+          $("[style]").removeAttr("style");
         },
         parserOptions: { xmlMode: true },
       })
     )
-    .pipe(replace('&gt;', '>'))
+    .pipe(replace("&gt;", ">"))
     .pipe(
       gulpSprite({
         mode: {
           symbol: {
-            sprite: '../sprite.svg',
+            sprite: "../sprite.svg",
             render: {
               scss: {
-                dest: '../../../src/scss/base/_sprite.scss',
-                template: 'src/scss/base/_sprite_template.scss',
+                dest: "../../../src/scss/base/_sprite.scss",
+                template: "src/scss/base/_sprite_template.scss",
               },
             },
           },
@@ -223,7 +214,6 @@ function watching() {
 
 exports.clean = clean;
 exports.css = css;
-exports.lintCss = lintCss;
 exports.html = html;
 exports.scripts = scripts;
 exports.images = images;
@@ -231,5 +221,13 @@ exports.optImages = optImages;
 exports.font = fonts;
 exports.svgSprite = svgSprite;
 
-exports.default = series(clean, parallel(html, css, scripts, images, fonts, svgSprite), parallel(watching, server));
-exports.build = series(clean, parallel(html, css, scripts, optImages, fonts, svgSprite));
+exports.default = series(
+  clean,
+  parallel(html, css, scripts, images, fonts, svgSprite),
+  parallel(watching, server)
+);
+
+exports.build = series(
+  clean,
+  parallel(html, css, scripts, optImages, fonts, svgSprite)
+);
