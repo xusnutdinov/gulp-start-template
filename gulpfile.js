@@ -57,7 +57,6 @@ function server() {
     },
     notify: false,
     ui: false,
-    online: true,
   });
   browserSync.watch(path.watch.all, browserSync.reload);
 }
@@ -211,13 +210,13 @@ function misc() {
 }
 
 function watching() {
-  watch(path.watch.pug, html).on("change", browserSync.reload);
-  watch(path.watch.scss, css).on("change", browserSync.reload);
-  watch(path.watch.js, scripts).on("change", browserSync.reload);
-  watch(path.watch.img, images).on("change", browserSync.reload);
-  watch(path.watch.svg, svgSprite).on("change", browserSync.reload);
-  watch(path.watch.fonts, fonts).on("change", browserSync.reload);
-  watch(path.watch.misc, misc).on("change", browserSync.reload);
+  watch(path.watch.pug, html);
+  watch(path.watch.scss, css);
+  watch(path.watch.js, scripts);
+  watch(path.watch.img, images);
+  watch(path.watch.svg, svgSprite);
+  watch(path.watch.fonts, fonts);
+  watch(path.watch.misc, misc);
 }
 
 exports.clean = clean;
