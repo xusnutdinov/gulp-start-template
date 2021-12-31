@@ -1,3 +1,7 @@
+// ==========
+// FONT-FACE
+// ==========
+
 @mixin font-face($font-name, $font-src, $font-style, $font-weight) {
   @font-face {
     font-family: "#{$font-name}", sans-serif;
@@ -9,15 +13,20 @@
   }
 }
 
+// ==========
+// MEDIA QUERIES
+// ==========
+
 $breakpoints: (
-  "sm": 480px,
-  "md": 768px,
-  "lg": 992px,
-  "xl": 1200px,
-  "xxl": 1400px,
+  "phone": 320px,
+  "wide-phone": 480px,
+  "tablet": 768px,
+  "laptop": 992px,
+  "desktop": 1200px,
+  "huge-desktop": 1400px,
 );
 
-@mixin mq($width, $type: max) {
+@mixin media($width, $type: max) {
   @if map_has_key($breakpoints, $width) {
     $width: map_get($breakpoints, $width);
 
@@ -30,6 +39,10 @@ $breakpoints: (
     }
   }
 }
+
+// ==========
+// CENTER BLOCK
+// ==========
 
 @mixin margin-auto() {
   margin-right: auto;
@@ -54,6 +67,10 @@ $breakpoints: (
   top: 50%;
   transform: translateY(-50%);
 }
+
+// ==========
+// DISPLAY FLEX
+// ==========
 
 @mixin flex($direction: row, $align-items: stretch, $justify: flex-start) {
   display: flex;

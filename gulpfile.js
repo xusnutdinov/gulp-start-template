@@ -10,8 +10,7 @@ const gulpClean = require("gulp-clean-css");
 const svgmin = require("gulp-svgmin");
 const fileInclude = require("gulp-include");
 const gcmq = require("gulp-group-css-media-queries");
-const pug = require("gulp-pug");
-const pugLinter = require("gulp-pug-linter");
+const gulpInclude = require("gulp-file-include");
 const plumber = require("gulp-plumber");
 const cheerio = require("gulp-cheerio");
 const replace = require("gulp-replace");
@@ -19,15 +18,17 @@ const formatHtml = require("gulp-format-html");
 const imagemin = require("gulp-imagemin");
 const imgCompress = require("imagemin-jpeg-recompress");
 const babel = require("gulp-babel");
+const sourcemaps = require("gulp-sourcemaps");
 
 const path = {
   src: {
-    pug: "src/templates/*.pug",
+    pug: "src/templates/*.html",
     scss: "src/scss/*.scss",
     js: "src/js/*.js",
     img: "src/img/**/*.+(png|jpg|jpeg|gif|svg|webp|ico|xml|webmanifest)",
     fonts: "src/fonts/*.+(woff|woff2)",
     svg: "src/svg/*.svg",
+    misc: "src/misc/**/*",
   },
   build: {
     pug: "build",
@@ -35,15 +36,17 @@ const path = {
     js: "build/js",
     img: "build/img",
     fonts: "build/fonts",
+    misc: "build",
   },
   watch: {
     all: "build",
-    pug: "src/templates/**/*.pug",
+    pug: "src/templates/**/*.html",
     scss: "src/scss/**/*.scss",
     js: "src/js/**/*.js",
     img: "src/img/**/*.+(png|jpg|jpeg|gif|svg|webp|ico|xml|webmanifest)",
     fonts: "src/fonts/*.+(woff|woff2)",
     svg: "src/svg/*.svg",
+    misc: "src/misc/**/*",
   },
 };
 
@@ -53,6 +56,8 @@ function server() {
       baseDir: "./build",
     },
     notify: false,
+    ui: false,
+    online: true,
   });
   browserSync.watch(path.watch.all, browserSync.reload);
 }
@@ -63,6 +68,8 @@ function clean() {
 
 function css() {
   return src(path.src.scss)
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
     .pipe(
       sass({
         outputStyle: "expanded",
@@ -101,23 +108,19 @@ function css() {
         extname: ".min.css",
       })
     )
+    .pipe(sourcemaps.write("."))
     .pipe(dest(path.build.css));
 }
 
 function html() {
   return src(path.src.pug)
     .pipe(plumber())
-    .pipe(pugLinter({ reporter: "default" }))
-    .pipe(
-      pug({
-        pretty: "\t",
-      })
-    )
+    .pipe(gulpInclude())
     .pipe(plumber.stop())
     .pipe(replace("&gt;", ">"))
     .pipe(
       formatHtml({
-        indent_size: 4,
+        indent_size: 2,
       })
     )
     .pipe(dest(path.build.pug));
@@ -203,13 +206,18 @@ function svgSprite() {
     .pipe(dest(path.build.img));
 }
 
+function misc() {
+  return src(path.src.misc).pipe(dest(path.build.misc));
+}
+
 function watching() {
-  watch(path.watch.pug, html);
-  watch(path.watch.scss, css);
-  watch(path.watch.js, scripts);
-  watch(path.watch.img, images);
-  watch(path.watch.svg, svgSprite);
-  watch(path.watch.fonts, fonts);
+  watch(path.watch.pug, html).on("change", browserSync.reload);
+  watch(path.watch.scss, css).on("change", browserSync.reload);
+  watch(path.watch.js, scripts).on("change", browserSync.reload);
+  watch(path.watch.img, images).on("change", browserSync.reload);
+  watch(path.watch.svg, svgSprite).on("change", browserSync.reload);
+  watch(path.watch.fonts, fonts).on("change", browserSync.reload);
+  watch(path.watch.misc, misc).on("change", browserSync.reload);
 }
 
 exports.clean = clean;
@@ -220,14 +228,15 @@ exports.images = images;
 exports.optImages = optImages;
 exports.font = fonts;
 exports.svgSprite = svgSprite;
+exports.misc = misc;
 
 exports.default = series(
   clean,
-  parallel(html, css, scripts, images, fonts, svgSprite),
+  parallel(html, css, scripts, misc, images, fonts, svgSprite),
   parallel(watching, server)
 );
 
 exports.build = series(
   clean,
-  parallel(html, css, scripts, optImages, fonts, svgSprite)
+  parallel(html, css, scripts, misc, optImages, fonts, svgSprite)
 );

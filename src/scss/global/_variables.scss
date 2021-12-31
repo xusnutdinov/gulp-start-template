@@ -13,11 +13,13 @@ $color-white: #fff;
 $color-black: #000;
 
 // ===========
-// Sizes
+// SIZES
 // ===========
 
 @mixin body {
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
+  color: $color-black;
+  background-color: $color-white;
 }

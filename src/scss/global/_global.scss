@@ -1,14 +1,15 @@
-body {
+.page {
+  min-height: 100vh;
   font-family: $font-primary;
 
   @include body;
 }
 
-body.lock {
+.page--lock {
   overflow: hidden;
 }
 
-.wrapper {
+.page__wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100%;

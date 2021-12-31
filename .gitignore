@@ -7,3 +7,8 @@ node_modules
 .idea
 Thumbs.db
 *.log
+npm-debug.*
+*.pdf
+*.psd
+*.ai
+*.fig
