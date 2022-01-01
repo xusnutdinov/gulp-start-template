@@ -104,6 +104,7 @@ function css() {
       })
     )
     .pipe(sourcemaps.write("."))
+    .pipe(plumber.stop())
     .pipe(dest(path.build.css));
 }
 

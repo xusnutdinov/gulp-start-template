@@ -1,31 +1,28 @@
-// ===========
-// FONTS
-// ===========
+/* Variables */
 
-$font-primary: "Roboto", sans-serif;
-$font-secondary: "Montserrat", sans-serif;
+:root {
+  // Fonts
+  --font-primary: "Roboto", sans-serif;
+  --font-secondary: "Montserrat", sans-serif;
 
-// ===========
-// COLORS
-// ===========
+  // Colors
+  --color-white: #fff;
+  --color-black: #000;
 
-$color-white: #fff;
-$color-black: #000;
+  // Properties
+  --transition: 0.3s ease-out;
 
-// ===========
-// PROPERTIES
-// ===========
-
-$transition: 0.3s ease-out;
-
-// ===========
-// SIZES
-// ===========
+  // Sizes
+  --body-font-size: 16px;
+  --body-font-wight: 400;
+  --body-line-height: 1.25;
+}
 
 @mixin body {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 20px;
-  color: $color-black;
-  background-color: $color-white;
+  font-family: var(--font-primary);
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-wight);
+  line-height: var(--body-line-height);
+  color: var(--color-black);
+  background-color: var(--color-white);
 }

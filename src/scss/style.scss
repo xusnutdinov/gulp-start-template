@@ -1,5 +1,5 @@
 // ==========
-// VENDORS
+// LIBS
 // ==========
 
 // @import "./vendors/custom-bootstrap";
@@ -13,7 +13,8 @@
 // ==========
 @import "./base/mixins";
 @import "./base/normalize";
-@import "./base/sprite";
+
+// @import "./base/sprite";
 
 // ==========
 // GLOBAL
@@ -27,9 +28,8 @@
 // BIG COMPONENTS
 // ==========
 
-@import "./components/header";
-@import "./components/footer";
-
+// @import "./components/header";
+// @import "./components/footer";
 // @import "./components/form";
 // @import "./components/modals";
 

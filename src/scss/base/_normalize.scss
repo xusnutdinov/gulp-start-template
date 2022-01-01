@@ -1,8 +1,4 @@
-/*!
- * ress.css • v4.0.0
- * MIT License
- * github.com/filipelinhares/ress
- */
+/* Normalize */
 
 /* # =================================================================
    # Global selectors
@@ -262,8 +258,8 @@ progress {
 }
 
 /* # =================================================================
-     # Accessibility
-     # ================================================================= */
+   # Accessibility
+   # ================================================================= */
 
 /* Specify the progress cursor of updating elements */
 [aria-busy="true"] {
