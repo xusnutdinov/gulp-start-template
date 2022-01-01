@@ -3,23 +3,25 @@ html {
 }
 
 .page {
-  display: flex;
-  flex-direction: column;
+  // body высостой всего контента
+  // height: auto;
+  // body высотой всего экрана
+  height: 100%;
   min-height: 100%;
   font-family: $font-primary;
 
   @include body;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 100%;
+    overflow: hidden;
+  }
 }
 
 .page--lock {
-  overflow: hidden;
-}
-
-.page__wrapper {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  min-height: 100%;
   overflow: hidden;
 }
 

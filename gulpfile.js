@@ -77,6 +77,7 @@ function css() {
     )
     .pipe(
       prefixer({
+        grid: true,
         cascade: false,
         overrideBrowserslist: ["last 8 versions", "> 1%", "not dead"],
         browsers: [
@@ -90,17 +91,12 @@ function css() {
         ],
       })
     )
-    .pipe(dest(path.build.css))
     .pipe(gcmq())
+    .pipe(dest(path.build.css))
     .pipe(
       gulpClean({
         level: 2,
       })
-    )
-    .pipe(
-      sass({
-        outputStyle: "compressed",
-      }).on("error", sass.logError)
     )
     .pipe(
       rename({
