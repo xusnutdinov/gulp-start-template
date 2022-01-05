@@ -1,4 +1,4 @@
-# Стартовый шаблон для верстки (Gulp, Pug, SCSS)
+# Стартовый шаблон для верстки (Gulp, HTML, SCSS)
 
 ## Подключение пакетов к проекту / Install npm packages in project
 

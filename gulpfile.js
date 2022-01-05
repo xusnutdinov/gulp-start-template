@@ -22,7 +22,7 @@ const sourcemaps = require("gulp-sourcemaps");
 
 const path = {
   src: {
-    pug: "src/templates/*.html",
+    html: "src/templates/*.html",
     scss: "src/scss/*.scss",
     js: "src/js/*.js",
     img: "src/img/**/*.+(png|jpg|jpeg|gif|svg|webp|ico|xml|webmanifest)",
@@ -31,7 +31,7 @@ const path = {
     misc: "src/misc/**/*",
   },
   build: {
-    pug: "build",
+    html: "build",
     css: "build/css",
     js: "build/js",
     img: "build/img",
@@ -40,7 +40,7 @@ const path = {
   },
   watch: {
     all: "build",
-    pug: "src/templates/**/*.html",
+    html: "src/templates/**/*.html",
     scss: "src/scss/**/*.scss",
     js: "src/js/**/*.js",
     img: "src/img/**/*.+(png|jpg|jpeg|gif|svg|webp|ico|xml|webmanifest)",
@@ -104,22 +104,23 @@ function css() {
       })
     )
     .pipe(sourcemaps.write("."))
-    .pipe(plumber.stop())
     .pipe(dest(path.build.css));
 }
 
 function html() {
-  return src(path.src.pug)
-    .pipe(plumber())
-    .pipe(gulpInclude())
-    .pipe(plumber.stop())
-    .pipe(replace("&gt;", ">"))
-    .pipe(
-      formatHtml({
-        indent_size: 2,
-      })
-    )
-    .pipe(dest(path.build.pug));
+  return (
+    src(path.src.html)
+      .pipe(plumber())
+      .pipe(gulpInclude())
+      .pipe(plumber.stop())
+      // .pipe(replace("&gt;", ">"))
+      .pipe(
+        formatHtml({
+          indent_size: 2,
+        })
+      )
+      .pipe(dest(path.build.html))
+  );
 }
 
 function scripts() {
@@ -191,7 +192,7 @@ function svgSprite() {
             sprite: "../sprite.svg",
             render: {
               scss: {
-                dest: "../../../src/scss/base/_sprite.scss",
+                dest: "../../../src/scss/global/_sprite.scss",
                 template: "src/scss/base/_sprite_template.scss",
               },
             },
@@ -207,7 +208,7 @@ function misc() {
 }
 
 function watching() {
-  watch(path.watch.pug, html);
+  watch(path.watch.html, html);
   watch(path.watch.scss, css);
   watch(path.watch.js, scripts);
   watch(path.watch.img, images);

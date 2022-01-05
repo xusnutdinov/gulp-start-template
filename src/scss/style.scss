@@ -14,15 +14,13 @@
 @import "./base/mixins";
 @import "./base/normalize";
 
-// @import "./base/sprite";
-
 // ==========
 // GLOBAL
 // ==========
+// @import "./base/sprite";
+// @import "./global/fonts";
 @import "./global/variables";
 @import "./global/global";
-
-// @import "./global/fonts";
 
 // ==========
 // BIG COMPONENTS
